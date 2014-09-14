@@ -7,7 +7,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.1.6.RELEASE")
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:1.1.6.RELEASE"
     }
 }
 
@@ -20,10 +20,7 @@ repositories {
 dependencies {
     compile 'org.scala-lang:scala-library:2.11.2'
 
-
     compile 'org.springframework.boot:spring-boot-starter-web:1.1.6.RELEASE'
-
-    compile 'org.pegdown:pegdown:1.4.2'
 
     testCompile 'junit:junit:4.11'
     testCompile 'org.scalatest:scalatest_2.11:2.2.2'
@@ -34,4 +31,11 @@ wrapper {
     gradleVersion '2.1'
 }
 
+sourceCompatibility = targetCompatibility = 1.7
+
+idea {
+    module {
+        jdkName = '1.7'
+    }
+}
 
