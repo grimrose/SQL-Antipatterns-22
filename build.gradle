@@ -1,13 +1,14 @@
 apply plugin: 'scala'
 apply plugin: 'idea'
 
-
 buildscript {
     repositories {
         jcenter()
     }
     dependencies {
         classpath "org.springframework.boot:spring-boot-gradle-plugin:1.1.6.RELEASE"
+        classpath 'com.h2database:h2:1.4.181'
+        classpath "org.flywaydb:flyway-gradle-plugin:3.0"
     }
 }
 
@@ -22,9 +23,22 @@ dependencies {
 
     compile 'org.springframework.boot:spring-boot-starter-web:1.1.6.RELEASE'
 
+    compile 'com.h2database:h2:1.4.181'
+
+    compile 'com.google.guava:guava:18.0'
+    compile 'commons-dbutils:commons-dbutils:1.6'
+
+    compile 'org.scalikejdbc:scalikejdbc_2.11:2.1.1'
+    compile 'org.scalikejdbc:scalikejdbc-config_2.11:2.1.1'
+    runtime 'ch.qos.logback:logback-classic:1.1.2'
+
     testCompile 'junit:junit:4.11'
+
     testCompile 'org.scalatest:scalatest_2.11:2.2.2'
     testRuntime 'org.scala-lang.modules:scala-xml_2.11:1.0.2'
+
+    testCompile 'org.scalikejdbc:scalikejdbc-test_2.11:2.1.1'
+
 }
 
 wrapper {
@@ -33,9 +47,23 @@ wrapper {
 
 sourceCompatibility = targetCompatibility = 1.7
 
+tasks.withType(ScalaCompile) {
+    scalaCompileOptions.useAnt = false
+}
+
+
 idea {
     module {
         jdkName = '1.7'
     }
 }
 
+apply plugin: 'flyway'
+
+flyway {
+    user = 'sa'
+    password = ''
+    driver = 'org.h2.Driver'
+    url = 'jdbc:h2:file:./db/default'
+    initVersion = 0
+}
