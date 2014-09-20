@@ -3,6 +3,7 @@ package org.grimrose.sqlap22.domain.java;
 import com.google.common.base.Optional;
 import org.apache.commons.dbutils.DbUtils;
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.ScalarHandler;
 import org.junit.Before;
 import org.junit.ClassRule;
 import org.junit.Test;
@@ -13,12 +14,13 @@ import java.sql.*;
 import java.util.Arrays;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertThat;
 
 
 public class AccountTest {
 
-    private static final String URL = "jdbc:h2:file:./db/default";
+    private static final String URL = "jdbc:log4jdbc:h2:file:./db/default";
     private static final String USER = "sa";
     private static final String PASSWORD = "";
 
@@ -54,33 +56,24 @@ public class AccountTest {
         }
     };
 
-    @Before
-    public void setUp() throws Exception {
-        // Setup
-        String sql = "delete from Accounts";
-        new QueryRunner().update(connection, sql);
-    }
-
-
     @Test
-    public void _id_1_かつ_name_Javaのアカウントが見つかること() throws Exception {
+    public void _insertしたJavaのアカウントが見つかること() throws Exception {
         // Setup
-        long id = 1;
         String name = "Java";
-        insert(id, name);
+        Integer id = insert(name);
 
         // Exercise
         Optional<Account> actual = findByIdAndName(id, name);
 
         // Verify
         assertThat(actual.isPresent(), is(true));
-        assertThat(actual.or(new Account()).getAccountId(), is(id));
+        assertThat(actual.or(new Account()).getAccountId(), is(not(0L)));
         assertThat(actual.or(new Account()).getAccountName().or(""), is(name));
     }
 
-    private int insert(long id, String name) throws SQLException {
-        String sql = "insert into Accounts(account_id, account_name) values (?, ?)";
-        return new QueryRunner().update(connection, sql, id, name);
+    private Integer insert(String name) throws SQLException {
+        String sql = "insert into Accounts(account_name) values (?)";
+        return new QueryRunner().insert(connection, sql, new ScalarHandler<Integer>(), name);
     }
 
     private Optional<Account> findByIdAndName(long id, String name) throws SQLException {

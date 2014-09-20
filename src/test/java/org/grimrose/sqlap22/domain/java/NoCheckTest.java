@@ -53,7 +53,7 @@ public class NoCheckTest {
     }
 
     @Ignore
-    public void _解決策_診断せずに判断する_in_Java() throws Exception {
+    public void _リズムを維持する() throws Exception {
         // Setup
         long id = 1;
         String status = "OPEN";
