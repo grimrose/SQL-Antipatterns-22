@@ -24,7 +24,7 @@ public class CheckTest {
     private static final String PASSWORD = "";
 
     @ClassRule
-    public static CheckTestHelper helper = new CheckTestHelper(URL, USER, PASSWORD);
+    public static TestHelper helper = new TestHelper(URL, USER, PASSWORD);
 
     @Test
     public void _リズムを維持する() throws Exception {

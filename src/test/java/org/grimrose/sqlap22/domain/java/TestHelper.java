@@ -13,16 +13,16 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Date;
 
-public class CheckTestHelper extends ExternalResource {
+public class TestHelper extends ExternalResource {
 
-    private static Logger logger = LoggerFactory.getLogger(CheckTestHelper.class);
+    private static Logger logger = LoggerFactory.getLogger(TestHelper.class);
 
     private String url;
     private String user;
     private String password;
     private Connection connection;
 
-    public CheckTestHelper(String url, String user, String password) {
+    public TestHelper(String url, String user, String password) {
         this.url = url;
         this.user = user;
         this.password = password;
