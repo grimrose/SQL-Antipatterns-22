@@ -57,7 +57,7 @@ values            (?, ?, ?, ?, ?)
     def "リズムを維持する"() {
         expect:
         def rows = []
-        Sql.withInstance(URL, USER, PASSWORD) { session ->
+        Sql.withInstance(URL, USER, PASSWORD) { Sql session ->
             try {
                 def account = session.firstRow("""
 select account_id as id, account_name as name from Accounts
