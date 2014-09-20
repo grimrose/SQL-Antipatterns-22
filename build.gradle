@@ -33,9 +33,11 @@ dependencies {
     compile "org.springframework.boot:spring-boot-starter-web:$springVersion"
 
     compile "com.h2database:h2:$h2Version"
-    compile "org.scala-lang:scala-library:$scalaFullVersion"
+    runtime 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16'
 
     // scalikejdbc
+    compile "org.scala-lang:scala-library:$scalaFullVersion"
+
     compile "org.scalikejdbc:scalikejdbc_$scalaVersion:$scalikejdbcVersion"
     compile "org.scalikejdbc:scalikejdbc-config_$scalaVersion:$scalikejdbcVersion"
     runtime 'ch.qos.logback:logback-classic:1.1.2'
