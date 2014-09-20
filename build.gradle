@@ -66,10 +66,17 @@ wrapper {
 
 sourceCompatibility = targetCompatibility = 1.7
 
+tasks.withType(JavaCompile) {
+    options.incremental = true
+}
+
 tasks.withType(ScalaCompile) {
     scalaCompileOptions.useAnt = false
 }
 
+test {
+    exclude '**/*$*'
+}
 
 idea {
     module {
