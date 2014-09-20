@@ -34,19 +34,42 @@
 
 >>>
 
-# 推測するな
-# 計測せよ
+#### 戻り値や例外の対応
+# ^
+## 自分のコード 
 
 >>>
 
-## 推測するな
-## 再現コード書け
+# 推測するな
+# 計測せよ
 
 ---
 
 ## その2: 見逃しがちなコード
 
-**TODO**
+>>>
+
+## SQLを連結して組み立てる
+
+>>>
+
+# [徳丸本](http://www.sbcr.jp/products/4797361193.html)を読め
+
+---
+
+## 私見
+
+>>>
+
+### O/R Mapperを使っている場合は、
+### 意図的に例外を発生させてみる。
+
+>>>
+
+## 理由
+
+### 稀に例外を握りつぶしたり、
+### 例外を変更している場合があるので…
 
 ---
 
@@ -78,7 +101,8 @@
 
 >>>
 
-### 例外処理の責任があるのは呼び出しを行った側であると確信出来る場合
+### 例外処理の責任があるのは、
+### 呼び出しを行った側であると確信出来る場合
 
 ---
 
@@ -120,43 +144,43 @@
 
 ## C++
 
-* [RAII（Resource Acquisition Is Initialization)](http://ja.wikipedia.org/wiki/RAII)
+[RAII（Resource Acquisition Is Initialization)](http://ja.wikipedia.org/wiki/RAII)
 
 >>>
 
 ## Python
 
-* [with 文](http://docs.python.jp/3.4/reference/compound_stmts.html#the-with-statement)
+[with 文](http://docs.python.jp/3.4/reference/compound_stmts.html#the-with-statement)
 
 >>>
 
 ## Go
 
-* [Defer, Panic, and Recover](http://blog.golang.org/defer-panic-and-recover)
+[Defer, Panic, and Recover](http://blog.golang.org/defer-panic-and-recover)
 
 >>>
 
 ## C♯
 
-* [using ステートメント (C# リファレンス)](http://msdn.microsoft.com/ja-jp/library/yh598w02.aspx)
+[using ステートメント (C# リファレンス)](http://msdn.microsoft.com/ja-jp/library/yh598w02.aspx)
 
 >>>
 
 ## Java7
 
-* [try-with-resources 文](http://docs.oracle.com/javase/jp/7/technotes/guides/language/try-with-resources.html)
+[try-with-resources 文](http://docs.oracle.com/javase/jp/7/technotes/guides/language/try-with-resources.html)
 
 >>>
 
 ## Groovy
 
-* [Loan my Resource Pattern](http://docs.groovy-lang.org/docs/next/html/documentation/design-pattern-in-groovy.html#_loan_my_resource_pattern)
+[Loan my Resource Pattern](http://docs.groovy-lang.org/docs/next/html/documentation/design-pattern-in-groovy.html#_loan_my_resource_pattern)
 
 >>>
 
 ## Scala
 
-* [ローンパターン](http://www.ne.jp/asahi/hishidama/home/tech/scala/sample/using.html#h_loan_pattern)
+[ローンパターン](http://www.ne.jp/asahi/hishidama/home/tech/scala/sample/using.html#h_loan_pattern)
 
 ---
 
@@ -271,7 +295,8 @@ Scalazでは
 
 ---
 
-ログと例外は適切に設計して、扱いましょう
+## ログと例外は適切に設計して
+## 扱いましょう
 
 ---
 
