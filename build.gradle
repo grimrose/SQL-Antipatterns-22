@@ -19,6 +19,10 @@ buildscript {
 
 apply plugin: 'spring-boot'
 
+bootRun {
+    jvmArgs "-Dspring.profiles.active=dev"
+}
+
 ext {
     scalaVersion = '2.11'
     scalaFullVersion = "${scalaVersion}.2"
