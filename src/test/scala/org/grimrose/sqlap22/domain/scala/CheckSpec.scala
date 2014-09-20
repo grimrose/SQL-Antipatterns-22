@@ -10,29 +10,27 @@ import scalikejdbc.scalatest.AutoRollback
 @RunWith(classOf[JUnitRunner])
 class CheckSpec extends fixture.FunSpec with Matchers with DBSettings with AutoRollback {
 
+  val name = "Scala"
+
   override def fixture(implicit session: DBSession) = {
-    withSQL {
-      delete.from(Account)
-    }.update().apply()
-
-    val id = 1
-    val name = "Scala"
-
-    val c = Account.column
-    withSQL {
-      insert.into(Account)
-        .columns(c.accountId, c.accountName)
-        .values(id, name)
-    }.update().apply()
-
     withSQL {
       deleteFrom(Bug)
     }.update().apply()
 
     withSQL {
+      delete.from(Account)
+    }.update().apply()
+
+    val c = Account.column
+    val id = withSQL {
+      insert.into(Account)
+        .columns(c.accountName)
+        .values(name)
+    }.updateAndReturnGeneratedKey().apply()
+
+    withSQL {
       val b = Bug.column
       insertInto(Bug).namedValues(
-        b.bugId -> 1,
         b.dataReported -> LocalDate.now,
         b.summary -> "dummy",
         b.reportedBy -> id,
@@ -46,7 +44,11 @@ class CheckSpec extends fixture.FunSpec with Matchers with DBSettings with AutoR
   describe("Bug") {
     it("リズムを維持する") { implicit session =>
 
-      val id = 1
+      val a = Account.syntax("a")
+      val id = withSQL {
+        select(a.accountId).from(Account as a).where.eq(a.accountName, name)
+      }.map(_.long(1)).single().apply()
+
       val status = "OPEN"
 
       val (b, a1, a2, bs) = (Bug.syntax, Account.syntax("a1"), Account.syntax("a2"), BugStatus.syntax)
@@ -63,6 +65,7 @@ class CheckSpec extends fixture.FunSpec with Matchers with DBSettings with AutoR
       }.map(Bug(b, a1, a2, bs)).list().apply()
 
       bugs should not(be(empty))
+      bugs.size should be(1)
     }
   }
 
