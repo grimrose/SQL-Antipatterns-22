@@ -65,14 +65,17 @@ public class AccountTest {
     @Test
     public void _id_1_かつ_name_Javaのアカウントが見つかること() throws Exception {
         // Setup
-        int id = 1;
+        long id = 1;
         String name = "Java";
         insert(id, name);
 
         // Exercise
         Optional<Account> actual = findByIdAndName(id, name);
+
         // Verify
         assertThat(actual.isPresent(), is(true));
+        assertThat(actual.or(new Account()).getAccountId(), is(id));
+        assertThat(actual.or(new Account()).getAccountName().or(""), is(name));
     }
 
     private int insert(long id, String name) throws SQLException {
@@ -81,12 +84,10 @@ public class AccountTest {
     }
 
     private Optional<Account> findByIdAndName(long id, String name) throws SQLException {
-        String sql = "select * from Accounts where account_id = ? and account_name = ?";
+        String sql = "select account_id, account_name from Accounts where account_id = ? and account_name = ?";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
-            int index = 1;
-            for (Object param : Arrays.asList(id, name)) {
-                ps.setObject(index++, param);
-            }
+            ps.setLong(1, id);
+            ps.setString(2, name);
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
                     long accountId = rs.getLong("account_id");
