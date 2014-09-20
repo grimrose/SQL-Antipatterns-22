@@ -1,43 +1,56 @@
+apply plugin: 'groovy'
 apply plugin: 'scala'
 apply plugin: 'idea'
 
 buildscript {
+    ext {
+        springVersion = '1.1.6.RELEASE'
+        h2Version = '1.4.181'
+    }
     repositories {
         jcenter()
     }
     dependencies {
-        classpath "org.springframework.boot:spring-boot-gradle-plugin:1.1.6.RELEASE"
-        classpath 'com.h2database:h2:1.4.181'
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:$springVersion"
+        classpath "com.h2database:h2:$h2Version"
         classpath "org.flywaydb:flyway-gradle-plugin:3.0"
     }
 }
 
 apply plugin: 'spring-boot'
 
+ext {
+    scalaVersion = '2.11'
+    scalaFullVersion = "${scalaVersion}.2"
+    scalikejdbcVersion = '2.1.1'
+}
+
 repositories {
     jcenter()
 }
 
 dependencies {
-    compile 'org.scala-lang:scala-library:2.11.2'
+    compile "org.springframework.boot:spring-boot-starter-web:$springVersion"
 
-    compile 'org.springframework.boot:spring-boot-starter-web:1.1.6.RELEASE'
+    compile "com.h2database:h2:$h2Version"
+    compile "org.scala-lang:scala-library:$scalaFullVersion"
 
-    compile 'com.h2database:h2:1.4.181'
-
-    compile 'com.google.guava:guava:18.0'
-    compile 'commons-dbutils:commons-dbutils:1.6'
-
-    compile 'org.scalikejdbc:scalikejdbc_2.11:2.1.1'
-    compile 'org.scalikejdbc:scalikejdbc-config_2.11:2.1.1'
+    // scalikejdbc
+    compile "org.scalikejdbc:scalikejdbc_$scalaVersion:$scalikejdbcVersion"
+    compile "org.scalikejdbc:scalikejdbc-config_$scalaVersion:$scalikejdbcVersion"
     runtime 'ch.qos.logback:logback-classic:1.1.2'
-
-    testCompile 'junit:junit:4.11'
-
+    testCompile "org.scalikejdbc:scalikejdbc-test_$scalaVersion:$scalikejdbcVersion"
     testCompile 'org.scalatest:scalatest_2.11:2.2.2'
     testRuntime 'org.scala-lang.modules:scala-xml_2.11:1.0.2'
 
-    testCompile 'org.scalikejdbc:scalikejdbc-test_2.11:2.1.1'
+    // java
+    compile 'com.google.guava:guava:18.0'
+    compile 'commons-dbutils:commons-dbutils:1.6'
+    testCompile 'junit:junit:4.11'
+
+    // groovy
+    compile 'org.codehaus.groovy:groovy-all:2.3.6'
+    testCompile 'org.spockframework:spock-core:0.7-groovy-2.0'
 
 }
 
