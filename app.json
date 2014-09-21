@@ -1,4 +1,9 @@
 {
-    "name": "SQL Antipatterns 22",
-    "repository": "https://github.com/grimrose/SQL-Antipatterns-22"
+  "name": "SQL Antipatterns 22",
+  "repository": "https://github.com/grimrose/SQL-Antipatterns-22",
+  "addons": [],
+  "env": {
+    "BUILDPACK_URL": "https://github.com/marcoVermeulen/heroku-buildpack-gradlew.git",
+    "JAVA_OPTS": "-Xmx384m -Xss512k -XX:+UseCompressedOops"
+  }
 }
