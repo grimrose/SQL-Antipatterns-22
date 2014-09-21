@@ -69,7 +69,8 @@ wrapper {
 sourceCompatibility = targetCompatibility = 1.7
 
 tasks.withType(JavaCompile) {
-    options.incremental = true
+//    options.incremental = true
+    options.encoding = 'UTF-8'
 }
 
 tasks.withType(ScalaCompile) {
@@ -103,4 +104,4 @@ heroku {
     appName = 'serene-scrubland-5745'
 }
 
-defaultTasks "clean", "build", "installApp"
+defaultTasks "clean", "assemble"
