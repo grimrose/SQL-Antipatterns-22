@@ -8,6 +8,7 @@ buildscript {
         h2Version = '1.4.181'
     }
     repositories {
+        mavenCentral()
         jcenter()
     }
     dependencies {
@@ -32,6 +33,7 @@ ext {
 }
 
 repositories {
+    mavenCentral()
     jcenter()
 }
 
@@ -69,7 +71,6 @@ wrapper {
 sourceCompatibility = targetCompatibility = 1.7
 
 tasks.withType(JavaCompile) {
-//    options.incremental = true
     options.encoding = 'UTF-8'
 }
 
