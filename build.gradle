@@ -13,7 +13,9 @@ buildscript {
     dependencies {
         classpath "org.springframework.boot:spring-boot-gradle-plugin:$springVersion"
         classpath "com.h2database:h2:$h2Version"
+        // gradle plugin
         classpath "org.flywaydb:flyway-gradle-plugin:3.0"
+        classpath 'com.wiredforcode:gradle-heroku-plugin:1.0.0'
     }
 }
 
@@ -93,3 +95,12 @@ flyway {
     url = 'jdbc:h2:file:./db/default'
     initVersion = 0
 }
+
+apply plugin: 'heroku'
+
+heroku {
+    apiKey = "$herokuApiKey"
+    appName = 'serene-scrubland-5745'
+}
+
+defaultTasks "clean", "build", "installApp"
