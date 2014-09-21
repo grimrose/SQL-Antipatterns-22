@@ -1,0 +1,7 @@
+language: groovy
+
+jdk:
+  - openjdk7
+
+before_script:
+  - ./gradlew -i flywayClean flywayInit flywayMigrate -x test
