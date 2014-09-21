@@ -99,7 +99,7 @@ flyway {
 apply plugin: 'heroku'
 
 heroku {
-    apiKey = "$herokuApiKey"
+    apiKey = project.hasProperty("herokuApiKey") ? "$herokuApiKey": ""
     appName = 'serene-scrubland-5745'
 }
 
