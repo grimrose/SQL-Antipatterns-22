@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static org.grimrose.sqlap22.domain.java.SQLErrorCodeMatcher.hasErrorCode;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertThat;
@@ -86,9 +87,7 @@ public class SeeNoEvilTest {
             // Setup
             // Verify
             expectedException.expect(SQLException.class);
-            expectedException.expectMessage("テーブル \"BUGSWHERE\" が見つかりません\n" +
-                    "Table \"BUGSWHERE\" not found; SQL statement:\n" +
-                    "SELECT * FROM BugsWHERE bug_id = 1 [42102-181]");
+            expectedException.expect(is(hasErrorCode(42102)));
 
             // Exercise
             Object bugId = 1;

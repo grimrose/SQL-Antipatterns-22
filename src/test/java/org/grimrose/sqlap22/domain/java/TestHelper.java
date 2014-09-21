@@ -46,6 +46,8 @@ public class TestHelper extends ExternalResource {
     @Override
     protected void before() throws Throwable {
         DbUtils.loadDriver("org.h2.Driver");
+        DbUtils.loadDriver("net.sf.log4jdbc.sql.jdbcapi.DriverSpy");
+
         connection = DriverManager.getConnection(url, user, password);
         new QueryRunner().update(connection, "delete from Bugs");
         new QueryRunner().update(connection, "delete from Accounts");
