@@ -18,6 +18,15 @@ class SlideConverter {
       |  <title>$title</title>
       |  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/reveal.js/2.6.2/css/theme/night.css">
       |  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/reveal.js/2.6.2/css/reveal.min.css">
+      |  <script type="text/javascript">
+      |    if(window.location.search.match(/print-pdf/gi)) {
+      |      var link = document.createElement('link');
+      |      link.rel = 'stylesheet';
+      |      link.type = 'text/css';
+      |      link.href = '//cdnjs.cloudflare.com/ajax/libs/reveal.js/2.6.2/css/print/pdf.css';
+      |      document.getElementsByTagName('head')[0].appendChild(link);
+      |    }
+      |  </script>
       | </head>
       | <body>
       |  <div class="reveal">
