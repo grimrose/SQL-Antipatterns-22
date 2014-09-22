@@ -8,10 +8,7 @@ import org.springframework.web.bind.annotation.{RequestMapping, RestController}
 import scala.io.Source
 
 @RestController
-class IndexController {
-
-  @Autowired
-  var slideConverter: SlideConverter = null
+class IndexController @Autowired()(val slideConverter: SlideConverter) {
 
   @RequestMapping(Array("/"))
   def index() = {
