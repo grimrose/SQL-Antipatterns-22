@@ -39,6 +39,7 @@ repositories {
 
 dependencies {
     compile "org.springframework.boot:spring-boot-starter-web:$springVersion"
+    testCompile "org.springframework.boot:spring-boot-starter-test:$springVersion"
 
     compile "com.h2database:h2:$h2Version"
     runtime 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16'
