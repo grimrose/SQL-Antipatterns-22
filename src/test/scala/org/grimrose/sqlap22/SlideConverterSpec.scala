@@ -1,13 +1,13 @@
 package org.grimrose.sqlap22
 
 import org.junit.runner.RunWith
+import org.scalatest.junit.JUnitRunner
 import org.scalatest.{FunSpec, Matchers}
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.SpringApplicationConfiguration
 import org.springframework.test.context.TestContextManager
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner
 
-@RunWith(classOf[SpringJUnit4ClassRunner])
+@RunWith(classOf[JUnitRunner])
 @SpringApplicationConfiguration(classes = Array(classOf[SlideAppConfig]))
 class SlideConverterSpec extends FunSpec with Matchers {
 
@@ -17,7 +17,7 @@ class SlideConverterSpec extends FunSpec with Matchers {
   new TestContextManager(this.getClass).prepareTestInstance(this)
 
   describe("SlideConverter") {
-    it("should be embedded empty string") {
+    it("should be embedded") {
       sut.bind("foo","bar") should be(s"""
       |<!DOCTYPE html>
       |<html>
