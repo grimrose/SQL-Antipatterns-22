@@ -39,7 +39,10 @@ repositories {
 
 dependencies {
     compile "org.springframework.boot:spring-boot-starter-web:$springVersion"
+    compile "org.springframework.boot:spring-boot-starter-batch:$springVersion"
     testCompile "org.springframework.boot:spring-boot-starter-test:$springVersion"
+
+    compile "com.github.scala-incubator.io:scala-io-file_$scalaVersion:0.4.3-1"
 
     compile "com.h2database:h2:$h2Version"
     runtime 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16'
