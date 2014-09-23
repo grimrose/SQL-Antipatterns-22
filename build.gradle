@@ -17,6 +17,7 @@ buildscript {
         // gradle plugin
         classpath "org.flywaydb:flyway-gradle-plugin:3.0"
         classpath 'com.wiredforcode:gradle-heroku-plugin:1.0.0'
+        classpath "org.ajoberstar:gradle-git:0.10.0"
     }
 }
 
@@ -112,3 +113,12 @@ heroku {
 }
 
 defaultTasks "clean", "assemble"
+
+apply plugin: "org.ajoberstar.github-pages"
+
+githubPages {
+    repoUri = 'git@github.com:grimrose/SQL-Antipatterns-22.git'
+    pages {
+        from file('index.html')
+    }
+}
