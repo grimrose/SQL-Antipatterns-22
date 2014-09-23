@@ -3,6 +3,10 @@ SQLアンチパターン読書会 22章
 
 ## シー・ノー・エビル（臭いものに蓋）
 
+### スライド
+
+[SQLアンチパターン 22章](http://grimrose.github.io/SQL-Antipatterns-22)
+
 ### サンプルについて
 
 * このプロジェクトは、[SQLアンチパターン](http://www.oreilly.co.jp/books/9784873115894/) 22章 シー・ノー・エビル（臭いものに蓋）
